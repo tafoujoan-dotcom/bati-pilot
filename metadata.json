@@ -1,0 +1,6 @@
+{
+  "name": "BATI-PILOT",
+  "description": "SaaS BTP complet pour entreprises de construction en Afrique francophone (Cameroun, FCFA, chantiers, ouvriers, paie, stocks, dépenses).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

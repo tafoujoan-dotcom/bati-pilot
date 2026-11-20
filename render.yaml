@@ -1,0 +1,40 @@
+# Blueprint de déploiement Render (Web Service + Base de données PostgreSQL managée)
+databases:
+  - name: bati-pilot-db
+    databaseName: bati_pilot
+    user: bati_pilot_user
+    plan: free
+
+services:
+  - type: web
+    name: bati-pilot-saas
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/system/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bati-pilot-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENABLE_DEMO_ACCOUNTS
+        value: "false"
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: CAMPAY_TOKEN
+        sync: false
+      - key: CAMPAY_WEBHOOK_KEY
+        sync: false
+      - key: CINETPAY_API_KEY
+        sync: false
+      - key: CINETPAY_SITE_ID
+        sync: false
+      - key: CINETPAY_SECRET_KEY
+        sync: false
